@@ -1,34 +1,10 @@
 {% extends "base.html" %}
-
+{% block title %}Car Detail{% endblock %}
 {% block content %}
-  <h1>Driver Detail</h1>
-  <p><strong>Username: </strong>{{driver.username}}</p>
-  <p><strong>First name: </strong> {{driver.first_name}}</p>
-  <p><strong>Last name: </strong> {{driver.last_name}}</p>
-  <p><strong>license number: </strong> {{driver.license_number}}</p>
-  <hr>
-  <h2>Cars of Driver</h2>
-
-   <table border="1" cellpadding="15" cellspacing="0">
-      <thead>
-        <tr>
-          <th>Model</th>
-          <th>Manufacturer</th>
-          <th>Country</th>
-          <th>Details</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for car in driver.cars.all %}
-        <tr>
-            <td>{{car.model}}</td>
-            <td>{{car.manufacturer.name}}</td>
-            <td>{{car.manufacturer.country}}</td>
-            <td>
-              <a href="{{ car.get_absolute_url }}">View</a>
-            </td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+<h2>{{ car.model }}</h2>
+<p>Country: {{ car.manufacturer.country}}</p>
+    <h3>Drivers:</h3>
+        {%  for driver in car.drivers.all%}
+            <p>{{driver.first_name}} {{driver.last_name}}</p>
+    {% endfor %}
 {% endblock %}
